@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from flask import Flask, render_template, session, redirect, url_for, flash
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
@@ -33,7 +34,7 @@ def index():
 
 @app.route('/user/<name>')
 def user(name):
-    return render_template('user.html', name=name)
+    return render_template('user.html', name=name, current_time=datetime.now(timezone.utc))
 
 @app.errorhandler(404)
 def page_not_found(e):
